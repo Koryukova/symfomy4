@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Posts;
 use App\Form\AddPostType;
 use App\Helpers\FileHelper;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -55,5 +56,15 @@ class PostsController extends Controller
         return $this->render('posts/add.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+    /**
+     * @Route("/posts/{post}", name="show_posts", requirements={"post"="\d+"})
+     */
+    public function showPost(Posts $post)
+    {
+        return $this->render('posts/post.html.twig', [
+            'post' => $post,
+            ]
+        );
     }
 }

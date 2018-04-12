@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Helpers\FileHelper;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -25,6 +26,14 @@ class Posts
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
+
+    private $comments;
+    /**
+     * @var Comments[]|PersistentCollection
+     *
+     * @ORM\OneToMany()
+     */
+
     private $userId;
 
     /**
